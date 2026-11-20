@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v1.5.0...v2.0.0) (2026-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* provider major bumps and a stricter Terraform baseline; consumers must run `terraform init -upgrade`.
+
+### 🚀 New Features
+
+* add namespace_labels variable to all modules ([a3465f4](https://github.com/gersonrs/modern-gitops-stack-module-nifi/commit/a3465f43826300ff4b64361219aa9ed52aca71e9))
+* upgrade charts, providers and Terraform baseline ([#11](https://github.com/gersonrs/modern-gitops-stack-module-nifi/issues/11)) ([ad4021c](https://github.com/gersonrs/modern-gitops-stack-module-nifi/commit/ad4021c580422e8ee7a1e4006d10a8aea0371c00))
+
+
+### 📦 CI Improvements
+
+* run release-please with GITHUB_TOKEN ([#12](https://github.com/gersonrs/modern-gitops-stack-module-nifi/issues/12)) ([8f36bcf](https://github.com/gersonrs/modern-gitops-stack-module-nifi/commit/8f36bcfb511690d2f2ca51f10714f56e9fe5d603))
+
 ## [1.5.0](https://github.com/GersonRS/modern-gitops-stack-module-nifi/compare/v1.4.0...v1.5.0) (2025-01-18)
 
 
