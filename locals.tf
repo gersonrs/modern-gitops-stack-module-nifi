@@ -62,31 +62,21 @@ locals {
         client_id     = "${var.oidc.client_id}"
         client_secret = "${var.oidc.client_secret}"
       }
+      # Exposure is handled by the HTTPRoute below, served by the Istio
+      # gateway, so the chart's own Ingress stays disabled.
       ingress = {
-        enabled = true
-        annotations = {
-          "cert-manager.io/cluster-issuer"                   = "${var.cluster_issuer}"
-          "traefik.ingress.kubernetes.io/router.entrypoints" = "websecure"
-          "traefik.ingress.kubernetes.io/router.tls"         = "true"
-        }
-        hosts = [
-          {
-            host = local.domain
-            path = "/nifi"
-          },
-          {
-            host = local.domain_full
-            path = "/nifi"
-          },
-        ]
-        tls = [{
-          secretName = "nifi-tls"
-          hosts = [
-            local.domain,
-            local.domain_full,
-          ]
-        }]
+        enabled = false
       }
+    }
+  }]
+
+  helm_values_httproute = [{
+    httproute = {
+      enabled           = true
+      host              = local.domain
+      path              = "/nifi"
+      gateway_name      = var.gateway_name
+      gateway_namespace = var.gateway_namespace
     }
   }]
 }
