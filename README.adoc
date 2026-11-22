@@ -20,11 +20,11 @@ The following requirements are needed by this module:
 
 The following providers are used by this module:
 
-- [[provider_null]] <<provider_null,null>> (~> 3.3)
+- [[provider_utils]] <<provider_utils,utils>> (~> 2.7)
 
 - [[provider_argocd]] <<provider_argocd,argocd>> (~> 7.18)
 
-- [[provider_utils]] <<provider_utils,utils>> (~> 2.7)
+- [[provider_null]] <<provider_null,null>> (~> 3.3)
 
 === Resources
 
@@ -97,7 +97,7 @@ Description: Override of target revision of the application chart.
 
 Type: `string`
 
-Default: `"v1.5.0"`
+Default: `"v2.0.0"`
 
 ==== [[input_cluster_issuer]] <<input_cluster_issuer,cluster_issuer>>
 
@@ -189,6 +189,22 @@ object({
 
 Default: `null`
 
+==== [[input_gateway_name]] <<input_gateway_name,gateway_name>>
+
+Description: Name of the Istio Gateway resource to attach the HTTPRoute to.
+
+Type: `string`
+
+Default: `"istio-gateway"`
+
+==== [[input_gateway_namespace]] <<input_gateway_namespace,gateway_namespace>>
+
+Description: Namespace of the Istio Gateway resource.
+
+Type: `string`
+
+Default: `"istio-ingress"`
+
 === Outputs
 
 The following outputs are exported:
@@ -198,7 +214,7 @@ The following outputs are exported:
 Description: ID to pass other modules in order to refer to this module as a dependency.
 // END_TF_DOCS
 
-=== Reference in table format 
+=== Reference in table format
 
 .Show tables
 [%collapsible]
@@ -221,9 +237,9 @@ Description: ID to pass other modules in order to refer to this module as a depe
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[provider_null]] <<provider_null,null>> |~> 3.3
 |[[provider_argocd]] <<provider_argocd,argocd>> |~> 7.18
 |[[provider_utils]] <<provider_utils,utils>> |~> 2.7
+|[[provider_null]] <<provider_null,null>> |~> 3.3
 |===
 
 = Resources
@@ -285,7 +301,7 @@ Description: ID to pass other modules in order to refer to this module as a depe
 |[[input_target_revision]] <<input_target_revision,target_revision>>
 |Override of target revision of the application chart.
 |`string`
-|`"v1.5.0"`
+|`"v2.0.0"`
 |no
 
 |[[input_cluster_issuer]] <<input_cluster_issuer,cluster_issuer>>
@@ -370,6 +386,18 @@ object({
 ----
 
 |`null`
+|no
+
+|[[input_gateway_name]] <<input_gateway_name,gateway_name>>
+|Name of the Istio Gateway resource to attach the HTTPRoute to.
+|`string`
+|`"istio-gateway"`
+|no
+
+|[[input_gateway_namespace]] <<input_gateway_namespace,gateway_namespace>>
+|Namespace of the Istio Gateway resource.
+|`string`
+|`"istio-ingress"`
 |no
 
 |===
