@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v2.0.0...v3.0.0) (2026-11-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* the ingress object and its nifi-tls secret are gone; the host is now served by the Istio gateway.
+
+### 🚀 New Features
+
+* expose through the Istio gateway instead of Traefik ([#14](https://github.com/gersonrs/modern-gitops-stack-module-nifi/issues/14)) ([9714d9e](https://github.com/gersonrs/modern-gitops-stack-module-nifi/commit/9714d9e66bdbb0fb3a335db759b068a31ca2acbe))
+
 ## [2.0.0](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v1.5.0...v2.0.0) (2026-11-20)
 
 
