@@ -9,7 +9,13 @@ spec:
       cluster-name: {{ .Values.nifi.clusterName }}
   zkAddress: "zookeeper.zookeeper:2181"
   zkPath: /{{ .Values.nifi.clusterName }}
-  {{- if .Values.nifi.ingress.enabled }}
+  {{- /*
+  The driver-ip Service exposes NiFi on 8080 and is the backend of both the
+  optional Ingress and the HTTPRoute. Gate it on either one, otherwise
+  disabling the Ingress removes the Service and the HTTPRoute has no backend.
+  */ -}}
+  {{- $httproute := (.Values.httproute | default dict) }}
+  {{- if or .Values.nifi.ingress.enabled ($httproute.enabled | default false) }}
   externalServices:
     - metadata:
         labels:
