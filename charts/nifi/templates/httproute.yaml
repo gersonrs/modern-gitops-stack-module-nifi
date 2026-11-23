@@ -14,9 +14,11 @@ spec:
     - {{ $httproute.host | quote }}
   rules:
     - matches:
+        {{- range ($httproute.paths | default (list ($httproute.path | default "/nifi"))) }}
         - path:
             type: PathPrefix
-            value: {{ $httproute.path | default "/nifi" }}
+            value: {{ . | quote }}
+        {{- end }}
       backendRefs:
         - name: driver-ip
           port: 8080
