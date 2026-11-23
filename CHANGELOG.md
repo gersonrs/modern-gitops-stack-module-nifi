@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v3.0.0...v3.0.1) (2026-11-23)
+
+
+### 🔥 Bug Fixes
+
+* create the driver-ip Service when only the HTTPRoute is enabled ([#16](https://github.com/gersonrs/modern-gitops-stack-module-nifi/issues/16)) ([ede06a8](https://github.com/gersonrs/modern-gitops-stack-module-nifi/commit/ede06a8b6f6dbe8b551e768aee5e62e14f5ce817))
+
 ## [3.0.0](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v2.0.0...v3.0.0) (2026-11-22)
 
 
