@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v3.0.1...v3.0.2) (2026-11-23)
+
+
+### 🔥 Bug Fixes
+
+* route /nifi-api through the gateway ([#18](https://github.com/gersonrs/modern-gitops-stack-module-nifi/issues/18)) ([a6460d5](https://github.com/gersonrs/modern-gitops-stack-module-nifi/commit/a6460d53bf0a0b82725fdddb17abfdca08052669))
+
 ## [3.0.1](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v3.0.0...v3.0.1) (2026-11-23)
 
 
