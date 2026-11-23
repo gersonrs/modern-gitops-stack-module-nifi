@@ -74,7 +74,7 @@ locals {
     httproute = {
       enabled           = true
       host              = local.domain
-      path              = "/nifi"
+      paths             = ["/nifi", "/nifi-api"]
       gateway_name      = var.gateway_name
       gateway_namespace = var.gateway_namespace
     }
