@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.3](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v3.0.2...v3.0.3) (2026-11-24)
+
+
+### 📚 Documentation
+
+* add usage and dependencies to the module documentation ([#20](https://github.com/gersonrs/modern-gitops-stack-module-nifi/issues/20)) ([a18de81](https://github.com/gersonrs/modern-gitops-stack-module-nifi/commit/a18de81e5cf39d30280f9f6a33abe5ffb8e55bb6))
+
 ## [3.0.2](https://github.com/gersonrs/modern-gitops-stack-module-nifi/compare/v3.0.1...v3.0.2) (2026-11-23)
 
 
