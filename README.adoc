@@ -1,5 +1,53 @@
 = modern-gitops-stack-module-nifi
 // Document attributes to replace along the document
+:nifikop-chart-version: 1.18.0
+:original-repo-url: https://github.com/konpyutaika/nifikop
+
+A https://modern-gitops-stack.io[Modern GitOps Stack] module to deploy Apache NiFi, managed by NiFiKop, for data ingestion and flow orchestration.
+
+The nifikop chart used by this module is shipped in this repository as well, in order to avoid any unwanted behaviors caused by unsupported versions.
+
+[cols="1,1,1",options="autowidth,header"]
+|===
+|Current Chart Version |Original Repository |Default Values
+|*1.18.0* |https://github.com/konpyutaika/nifikop/tree/main/helm-charts/nifikop[nifikop] |—
+|===
+
+== Usage
+
+This module can be declared by adding the following block to your Terraform configuration:
+
+[source,terraform]
+----
+module "nifi" {
+  source = "git::https://github.com/GersonRS/modern-gitops-stack-module-nifi.git?ref=<RELEASE>"
+
+  cluster_name   = local.cluster_name
+  base_domain    = local.base_domain
+  subdomain      = local.subdomain
+  cluster_issuer = local.cluster_issuer
+  app_autosync   = local.app_autosync
+
+  dependency_ids = {
+    zookeeper = module.zookeeper.id
+    istio     = module.istio.id
+  }
+}
+----
+
+The application is deployed to the `nifi` namespace.
+
+== Technical Reference
+
+=== Dependencies
+
+==== `module.zookeeper.id`
+
+NiFi uses ZooKeeper for cluster coordination.
+
+==== `module.istio.id`
+
+NiFi is exposed through the Istio gateway.
 
 // BEGIN_TF_DOCS
 === Requirements
@@ -20,11 +68,11 @@ The following requirements are needed by this module:
 
 The following providers are used by this module:
 
-- [[provider_utils]] <<provider_utils,utils>> (~> 2.7)
+- [[provider_null]] <<provider_null,null>> (~> 3.3)
 
 - [[provider_argocd]] <<provider_argocd,argocd>> (~> 7.18)
 
-- [[provider_null]] <<provider_null,null>> (~> 3.3)
+- [[provider_utils]] <<provider_utils,utils>> (~> 2.7)
 
 === Resources
 
@@ -97,7 +145,7 @@ Description: Override of target revision of the application chart.
 
 Type: `string`
 
-Default: `"v3.0.1"`
+Default: `"v3.0.2"`
 
 ==== [[input_cluster_issuer]] <<input_cluster_issuer,cluster_issuer>>
 
@@ -237,9 +285,9 @@ Description: ID to pass other modules in order to refer to this module as a depe
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
+|[[provider_null]] <<provider_null,null>> |~> 3.3
 |[[provider_argocd]] <<provider_argocd,argocd>> |~> 7.18
 |[[provider_utils]] <<provider_utils,utils>> |~> 2.7
-|[[provider_null]] <<provider_null,null>> |~> 3.3
 |===
 
 = Resources
@@ -301,7 +349,7 @@ Description: ID to pass other modules in order to refer to this module as a depe
 |[[input_target_revision]] <<input_target_revision,target_revision>>
 |Override of target revision of the application chart.
 |`string`
-|`"v3.0.1"`
+|`"v3.0.2"`
 |no
 
 |[[input_cluster_issuer]] <<input_cluster_issuer,cluster_issuer>>
