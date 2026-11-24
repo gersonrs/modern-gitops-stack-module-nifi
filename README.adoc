@@ -1,5 +1,53 @@
 = modern-gitops-stack-module-nifi
 // Document attributes to replace along the document
+:nifikop-chart-version: 1.18.0
+:original-repo-url: https://github.com/konpyutaika/nifikop
+
+A https://modern-gitops-stack.io[Modern GitOps Stack] module to deploy Apache NiFi, managed by NiFiKop, for data ingestion and flow orchestration.
+
+The nifikop chart used by this module is shipped in this repository as well, in order to avoid any unwanted behaviors caused by unsupported versions.
+
+[cols="1,1,1",options="autowidth,header"]
+|===
+|Current Chart Version |Original Repository |Default Values
+|*1.18.0* |https://github.com/konpyutaika/nifikop/tree/main/helm-charts/nifikop[nifikop] |—
+|===
+
+== Usage
+
+This module can be declared by adding the following block to your Terraform configuration:
+
+[source,terraform]
+----
+module "nifi" {
+  source = "git::https://github.com/GersonRS/modern-gitops-stack-module-nifi.git?ref=<RELEASE>"
+
+  cluster_name   = local.cluster_name
+  base_domain    = local.base_domain
+  subdomain      = local.subdomain
+  cluster_issuer = local.cluster_issuer
+  app_autosync   = local.app_autosync
+
+  dependency_ids = {
+    zookeeper = module.zookeeper.id
+    istio     = module.istio.id
+  }
+}
+----
+
+The application is deployed to the `nifi` namespace.
+
+== Technical Reference
+
+=== Dependencies
+
+==== `module.zookeeper.id`
+
+NiFi uses ZooKeeper for cluster coordination.
+
+==== `module.istio.id`
+
+NiFi is exposed through the Istio gateway.
 
 // BEGIN_TF_DOCS
 === Requirements
